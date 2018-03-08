@@ -1,0 +1,4 @@
+validators
+colorama
+tabulate
+fake_useragent
