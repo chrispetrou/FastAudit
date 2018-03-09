@@ -244,12 +244,12 @@ class FastAudit():
                                     logging.warning('Wordpress version ({}) possible vulnerability detected:'.format(self.__wpver))
                                     logging.warning(vuln['title'])
                             if 'vuln_type' in vuln:
-                                print '  {0}╚══[Vulnerability-type{1}] {2}{3}{1}'.format(B, S, RD, vuln['vuln_type'])
+                                print '  {0}╚══[Vulnerability-type]{1} {2}{3}{1}'.format(B, S, RD, vuln['vuln_type'])
                             if 'fixed_in' in vuln:
-                                print '  {0}╚══[Fixed{1}] Fixed in verion {2}{3}{1}'.format(B, S, RD, vuln['fixed_in']) 
+                                print '  {0}╚══[Fixed]{1} Fixed in verion {2}{3}{1}'.format(B, S, RD, vuln['fixed_in']) 
                             if 'references' in vuln:
                                 if 'url' in vuln['references']:
-                                    print '  {}╚══[References{}]:'.format(B, S)
+                                    print '  {}╚══[References]:{}'.format(B, S)
                                     for u in vuln['references']['url']:
                                         print '\t╚══> {}'.format(u)
                     else: print '{0}╚══{2}[+]{1} No vulnerabilities found for {3}{4}{1}'.format(B, S, G, C, self.__wpver)
@@ -278,12 +278,12 @@ class FastAudit():
                                     logging.warning('Wordpress theme ({}) possible vulnerability detected:'.format(self.__theme))
                                     logging.warning(vuln['title'])
                             if 'vuln_type' in vuln:
-                                print '  {0}╚══[Vulnerability-type{1}] {2}{3}{1}'.format(B, S, RD, vuln['vuln_type'])
+                                print '  {0}╚══[Vulnerability-type]{1} {2}{3}{1}'.format(B, S, RD, vuln['vuln_type'])
                             if 'fixed_in' in vuln:
-                                print '  {0}╚══[Fixed{1}] Fixed in verion {2}{3}{1}'.format(B, S, RD, vuln['fixed_in']) 
+                                print '  {0}╚══[Fixed]{1} Fixed in verion {2}{3}{1}'.format(B, S, RD, vuln['fixed_in']) 
                             if 'references' in vuln:
                                 if 'url' in vuln['references']:
-                                    print '  {}╚══[References{}]:'.format(B, S)
+                                    print '  {}╚══[References]:{}'.format(B, S)
                                     for u in vuln['references']['url']:
                                         print '\t╚══> {}'.format(u)
                     else: print '{0}╚══{2}[+]{1} No vulnerabilities found for {3}{4}{1}'.format(B, S, G, C, self.__theme)
@@ -311,12 +311,12 @@ class FastAudit():
                                     logging.warning('Wordpress plugin ({}) possible vulnerability detected:'.format(plugin))
                                     logging.warning(vuln['title'])
                             if 'vuln_type' in vuln:
-                                print '  {0}╚══[Vulnerability-type{1}] {2}{3}{1}'.format(B, S, RD, vuln['vuln_type'])
+                                print '  {0}╚══[Vulnerability-type]{1} {2}{3}{1}'.format(B, S, RD, vuln['vuln_type'])
                             if 'fixed_in' in vuln:
-                                print '  {0}╚══[Fixed{1}] Fixed in verion {2}{3}{1}'.format(B, S, G, vuln['fixed_in'])
+                                print '  {0}╚══[Fixed]{1} Fixed in verion {2}{3}{1}'.format(B, S, G, vuln['fixed_in'])
                             if 'references' in vuln:
                                 if 'url' in vuln['references']:
-                                    print '  {}╚══[References{}]:'.format(B, S)
+                                    print '  {}╚══[References]:{}'.format(B, S)
                                     for u in vuln['references']['url']:
                                         print '\t╚══> {}'.format(u)
                     else: print '{0}╚══{2}[+]{1} No vulnerabilities found!'.format(B, S, G)
