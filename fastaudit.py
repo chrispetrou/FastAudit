@@ -99,5 +99,5 @@ if __name__ == '__main__':
         except KeyboardInterrupt:
             print '\n{}[+] Exiting!{}\n'.format(R, BR)
             sys.exit(0)
-    else: print '{}usage:{} fastaudit.py [-h] [-u] [-eu] [-ep] [--sha1] [-p] [-s]'.format(B, S)
+    else: print '{}usage:{} fastaudit.py [-h] [-u] [-eu] [-ep] [-ua] [-p] [-s] [--shodan] [--sha1]'.format(B, S)
 #_EOF
