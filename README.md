@@ -3,14 +3,6 @@
 `FastAudit` is a simple [wordpress](https://wordpress.com/) enumeration tool and security auditor.
 
 ```
-$ ./fastaudit.py -h
-
-╔═══╗     ╔╗        ╔╗╔╗
-║╔══╝    ╔╝╚╗       ║╠╝╚╗
-║╚══╦══╦═╩╗╔╬══╦╗╔╦═╝╠╗╔╝
-║╔══╣╔╗║══╣║║╔╗║║║║╔╗╠╣║
-║║  ║╔╗╠══║╚╣╔╗║╚╝║╚╝║║╚╗
-╚╝  ╚╝╚╩══╩═╩╝╚╩══╩══╩╩═╝...(ver. 1.4)
 usage: fastaudit.py [-h] [-u] [-eu] [-ep] [-ua] [-p] [-s] [--shodan] [--sha1]
 
 FastAudit: A wordpress security auditor!
