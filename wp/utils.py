@@ -176,8 +176,6 @@ class FastAudit():
     def getLinks(self, content):
         """extract the links of the page"""
         try:
-            if self.__save:
-                logging.warning('Retrieving links from page.')
             soup = BeautifulSoup(content, 'html.parser')
             links = soup.findAll(name='link')
             return list(set(link.get('href') for link in links if link.has_attr("href")))
@@ -241,8 +239,7 @@ class FastAudit():
                             if 'title' in vuln:
                                 print '\n• {0}{2}{1}'.format(RD, S, vuln['title'])
                                 if self.__save:
-                                    logging.warning('Wordpress version ({}) possible vulnerability detected:'.format(self.__wpver))
-                                    logging.warning(vuln['title'])
+                                    logging.warning('Wordpress version ({}) possible vulnerability detected: {}'.format(self.__wpver, vuln['title']))
                             if 'vuln_type' in vuln:
                                 print '  {0}╚══[Vulnerability-type]{1} {2}{3}{1}'.format(B, S, RD, vuln['vuln_type'])
                             if 'fixed_in' in vuln:
@@ -275,8 +272,7 @@ class FastAudit():
                             if 'title' in vuln:
                                 print '\n• {0}{2}{1}'.format(RD, S, vuln['title'])
                                 if self.__save:
-                                    logging.warning('Wordpress theme ({}) possible vulnerability detected:'.format(self.__theme))
-                                    logging.warning(vuln['title'])
+                                    logging.warning('Wordpress theme ({}) possible vulnerability detected: {}'.format(self.__theme, vuln['title']))
                             if 'vuln_type' in vuln:
                                 print '  {0}╚══[Vulnerability-type]{1} {2}{3}{1}'.format(B, S, RD, vuln['vuln_type'])
                             if 'fixed_in' in vuln:
@@ -308,8 +304,7 @@ class FastAudit():
                             if 'title' in vuln:
                                 print '\n• {1}{2}{0}'.format(S, RD, vuln['title'])
                                 if self.__save:
-                                    logging.warning('Wordpress plugin ({}) possible vulnerability detected:'.format(plugin))
-                                    logging.warning(vuln['title'])
+                                    logging.warning('Wordpress plugin ({}) possible vulnerability detected: {}'.format(plugin, vuln['title']))
                             if 'vuln_type' in vuln:
                                 print '  {0}╚══[Vulnerability-type]{1} {2}{3}{1}'.format(B, S, RD, vuln['vuln_type'])
                             if 'fixed_in' in vuln:
@@ -323,11 +318,6 @@ class FastAudit():
                 else: print '{0}╚══{2}[+]{1} No vulnerabilities found!'.format(B, S, G)
         except Exception, ApiError:
             raise ApiError
-
-
-    def saveLogs(self):
-        """store results on a local db"""
-        pass
 
 
     def extractUsers(self, links):
