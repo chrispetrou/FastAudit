@@ -226,6 +226,24 @@ class FastAudit():
             raise error
 
 
+    def printInfo(self, vulns, key, value):
+        print '{0}╚══[{2}x{3}]{1}{0} Possible vulnerabilities:{1}'.format(B, S, RD, F)
+        for vuln in vulns:
+            if 'title' in vuln:
+                print '\n• {0}{2}{1}'.format(RD, S, vuln['title'])
+                if self.__save:
+                    logging.warning('Wordpress {} ({}) possible vulnerability detected: {}'.format(key, value, vuln['title']))
+            if 'vuln_type' in vuln:
+                print '  {0}╚══[Vulnerability-type]{1} {2}{3}{1}'.format(B, S, RD, vuln['vuln_type'])
+            if 'fixed_in' in vuln:
+                print '  {0}╚══[Fixed]{1} Fixed in verion {2}{3}{1}'.format(B, S, RD, vuln['fixed_in']) 
+            if 'references' in vuln:
+                if 'url' in vuln['references']:
+                    print '  {}╚══[References]:{}'.format(B, S)
+                    for u in vuln['references']['url']:
+                        print '\t╚══> {}'.format(u)
+
+
     def wpverVulns(self):
         """returns vulns based on version"""
         try:    
@@ -234,21 +252,7 @@ class FastAudit():
                 if ans.status_code == 200:
                     vulns = ans.json()[self.__wpver.split()[1]]['vulnerabilities']
                     if vulns:
-                        print '{0}╚══[{2}x{3}]{1}{0} Possible vulnerabilities:{1}'.format(B, S, RD, F)
-                        for vuln in vulns:
-                            if 'title' in vuln:
-                                print '\n• {0}{2}{1}'.format(RD, S, vuln['title'])
-                                if self.__save:
-                                    logging.warning('Wordpress version ({}) possible vulnerability detected: {}'.format(self.__wpver, vuln['title']))
-                            if 'vuln_type' in vuln:
-                                print '  {0}╚══[Vulnerability-type]{1} {2}{3}{1}'.format(B, S, RD, vuln['vuln_type'])
-                            if 'fixed_in' in vuln:
-                                print '  {0}╚══[Fixed]{1} Fixed in verion {2}{3}{1}'.format(B, S, RD, vuln['fixed_in']) 
-                            if 'references' in vuln:
-                                if 'url' in vuln['references']:
-                                    print '  {}╚══[References]:{}'.format(B, S)
-                                    for u in vuln['references']['url']:
-                                        print '\t╚══> {}'.format(u)
+                        self.printInfo(vulns, 'version', self.__wpver)
                     else: print '{0}╚══{2}[+]{1} No vulnerabilities found for {3}{4}{1}'.format(B, S, G, C, self.__wpver)
                 else: print '{0}╚══{2}[+]{1} No vulnerabilities found for {3}{4}{1}'.format(B, S, G, C, self.__wpver)
         except KeyError:
@@ -267,21 +271,7 @@ class FastAudit():
                 if ans.status_code == 200:
                     vulns = ans.json()[self.__theme.lower()]['vulnerabilities']
                     if vulns:
-                        print '{0}╚══[{2}x{3}]{1}{0} Possible vulnerabilities:{1}'.format(B, S, RD, F)
-                        for vuln in vulns:
-                            if 'title' in vuln:
-                                print '\n• {0}{2}{1}'.format(RD, S, vuln['title'])
-                                if self.__save:
-                                    logging.warning('Wordpress theme ({}) possible vulnerability detected: {}'.format(self.__theme, vuln['title']))
-                            if 'vuln_type' in vuln:
-                                print '  {0}╚══[Vulnerability-type]{1} {2}{3}{1}'.format(B, S, RD, vuln['vuln_type'])
-                            if 'fixed_in' in vuln:
-                                print '  {0}╚══[Fixed]{1} Fixed in verion {2}{3}{1}'.format(B, S, RD, vuln['fixed_in']) 
-                            if 'references' in vuln:
-                                if 'url' in vuln['references']:
-                                    print '  {}╚══[References]:{}'.format(B, S)
-                                    for u in vuln['references']['url']:
-                                        print '\t╚══> {}'.format(u)
+                        self.printInfo(vulns, 'theme', self.__theme)
                     else: print '{0}╚══{2}[+]{1} No vulnerabilities found for {3}{4}{1}'.format(B, S, G, C, self.__theme)
                 else: print '{0}╚══{2}[+]{1} No vulnerabilities found for {3}{4}{1}'.format(B, S, G, C, self.__theme)
         except KeyError:
@@ -299,21 +289,7 @@ class FastAudit():
                 if ans.status_code == 200:
                     vulns = ans.json()[plugin]['vulnerabilities']
                     if vulns:
-                        print '{0}╚══[{2}x{3}]{1}{0} Possible vulnerabilities:{1}'.format(B, S, RD, F)
-                        for vuln in vulns:
-                            if 'title' in vuln:
-                                print '\n• {1}{2}{0}'.format(S, RD, vuln['title'])
-                                if self.__save:
-                                    logging.warning('Wordpress plugin ({}) possible vulnerability detected: {}'.format(plugin, vuln['title']))
-                            if 'vuln_type' in vuln:
-                                print '  {0}╚══[Vulnerability-type]{1} {2}{3}{1}'.format(B, S, RD, vuln['vuln_type'])
-                            if 'fixed_in' in vuln:
-                                print '  {0}╚══[Fixed]{1} Fixed in verion {2}{3}{1}'.format(B, S, G, vuln['fixed_in'])
-                            if 'references' in vuln:
-                                if 'url' in vuln['references']:
-                                    print '  {}╚══[References]:{}'.format(B, S)
-                                    for u in vuln['references']['url']:
-                                        print '\t╚══> {}'.format(u)
+                        self.printInfo(vulns, 'plugin', plugin)
                     else: print '{0}╚══{2}[+]{1} No vulnerabilities found!'.format(B, S, G)
                 else: print '{0}╚══{2}[+]{1} No vulnerabilities found!'.format(B, S, G)
         except Exception, ApiError:
