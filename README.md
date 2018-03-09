@@ -59,8 +59,8 @@ For the _shodan_ and/or _proxy_ to work, you have to set the appropriate values 
 >This tool is only for testing and academic purposes and can only be used where strict consent has been given. Do not use it for illegal purposes! It is the end user’s responsibility to obey all applicable local, state and federal laws. Developers assume no liability and are not responsible for any misuse or damage caused by this tool and software in general.
 
 ### TODO
-*   integrate [zoomeye](https://www.zoomeye.org) search also
-*   detect exact plugin-version when possible
+- [ ] integrate [zoomeye](https://www.zoomeye.org) search also
+- [ ] detect exact plugin-version when possible
 
 ### Credits
 Special thanks to [WPScan team](https://github.com/wpscanteam)!
