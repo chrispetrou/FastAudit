@@ -31,6 +31,7 @@ import requests
 from socket import *
 from urlparse import urlparse
 from bs4 import BeautifulSoup
+from datetime import datetime
 try:
     from tabulate import tabulate
     from fake_useragent import UserAgent
@@ -54,6 +55,8 @@ class FastAudit():
         self.__pass      = sha1pass
         self.__shodan    = shodan_api
         self.__key       = shodan_key
+        self.__totalreqs = 0 # counts total requests made
+        self.__starttime = datetime.now()
 
         # set user-agent
         if useragent:
@@ -93,6 +96,12 @@ class FastAudit():
         if self.__shodan and self.__key:
             self.shodanSearch(self.__url)
 
+        self.onExit()
+
+
+    def onExit(self):
+        print '\n{0}[+]{1} Total requests made: {0}{2}{1}'.format(G, S, self.__totalreqs-1)
+        print '{0}[+]{1} Total duration: {0}{2}{1}\n '.format(G, S, datetime.now()-self.__starttime)
 
     def showUsers(self):
         """print usernames gathered using tabulate"""
@@ -127,6 +136,7 @@ class FastAudit():
             useragent = self.__useragent
         try:
             # check for proxy
+            self.__totalreqs += 1
             if self.__proxy and self.__host and self.__port:
                 proxies = {"http":'{}:{}'.format(self.__host, self.__port), "https":'{}:{}'.format(self.__host, self.__port)}
                 return requests.get(url, proxies=proxies, verify=False, headers = {'User-Agent':useragent})
@@ -253,8 +263,10 @@ class FastAudit():
                     vulns = ans.json()[self.__wpver.split()[1]]['vulnerabilities']
                     if vulns:
                         self.printInfo(vulns, 'version', self.__wpver)
-                    else: print '{0}╚══{2}[+]{1} No vulnerabilities found for {3}{4}{1}'.format(B, S, G, C, self.__wpver)
-                else: print '{0}╚══{2}[+]{1} No vulnerabilities found for {3}{4}{1}'.format(B, S, G, C, self.__wpver)
+                    else:
+                        print '{0}╚══{2}[+]{1} No vulnerabilities found for {3}{4}{1}'.format(B, S, G, C, self.__wpver)
+                else:
+                    print '{0}╚══{2}[+]{1} No vulnerabilities found for {3}{4}{1}'.format(B, S, G, C, self.__wpver)
         except KeyError:
             pass
         except IndexError:
@@ -272,8 +284,10 @@ class FastAudit():
                     vulns = ans.json()[self.__theme.lower()]['vulnerabilities']
                     if vulns:
                         self.printInfo(vulns, 'theme', self.__theme)
-                    else: print '{0}╚══{2}[+]{1} No vulnerabilities found for {3}{4}{1}'.format(B, S, G, C, self.__theme)
-                else: print '{0}╚══{2}[+]{1} No vulnerabilities found for {3}{4}{1}'.format(B, S, G, C, self.__theme)
+                    else:
+                        print '{0}╚══{2}[+]{1} No vulnerabilities found for {3}{4}{1}'.format(B, S, G, C, self.__theme)
+                else:
+                    print '{0}╚══{2}[+]{1} No vulnerabilities found for {3}{4}{1}'.format(B, S, G, C, self.__theme)
         except KeyError:
             pass
         except Exception, error:
@@ -290,8 +304,10 @@ class FastAudit():
                     vulns = ans.json()[plugin]['vulnerabilities']
                     if vulns:
                         self.printInfo(vulns, 'plugin', plugin)
-                    else: print '{0}╚══{2}[+]{1} No vulnerabilities found!'.format(B, S, G)
-                else: print '{0}╚══{2}[+]{1} No vulnerabilities found!'.format(B, S, G)
+                    else:
+                        print '{0}╚══{2}[+]{1} No vulnerabilities found!'.format(B, S, G)
+                else:
+                    print '{0}╚══{2}[+]{1} No vulnerabilities found!'.format(B, S, G)
         except Exception, ApiError:
             raise ApiError
 
