@@ -19,7 +19,7 @@ arguments:
   --sha1              Specify a password (in sha1) to check for security issues
 ```
 
-It is inspired by the amazing [WPScan](https://github.com/wpscanteam/wpscan) tool and is of course powered by the [WPScan Vulnerability Database](https://wpvulndb.com/api) to identify possible plugin/theme/wpVersion-related vulnerabilities. It performs only very basic enumeration based on old techniques like `?authorid`, `wp-content/plugins` etc..., though I like to use it for a fast scan to enumerate the basics.
+It is inspired by the amazing [WPScan](https://github.com/wpscanteam/wpscan) tool and is of course powered by the [WPScan Vulnerability Database](https://wpvulndb.com/api) to identify possible plugin/theme/wpVersion-related vulnerabilities. It performs only very basic enumeration based on old techniques like `?authorid`, `wp-content/plugins` etc..., though It's nice to use it for a fast scan to enumerate the basics.
 
 This tool is **only** for _enumeration_ and **not** for _exploitation_ - so it doesn't perform any kind of brute-force attack or any other attack in general. This tool can be used by developers and security engineers to scan their wordpress applications for possible vulberabilities (e.g. old plugins etc...) and fix them as soon as possible - that's all!
 
