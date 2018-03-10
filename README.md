@@ -25,7 +25,7 @@ This tool is **only** for _enumeration_ and **not** for _exploitation_ - so it d
 
 ---
 
-<img src="images/example.png" width="70%">
+<img src="images/example.png">
 
 ### Features
 *   enumerates wp-_version/theme/users/plugins_ (_using basic techniques - check references_)
