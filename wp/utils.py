@@ -323,7 +323,7 @@ class FastAudit():
             pass
         return list(set(users))
 
-
+    # bug when it redirects back to main page...
     def enumUsers(self):
         """enumerates users based on the old author-id dork"""
         id = 1
