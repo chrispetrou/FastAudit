@@ -29,6 +29,7 @@ import shodan
 import logging
 import requests
 from socket import *
+from hashlib import *
 from urlparse import urlparse
 from bs4 import BeautifulSoup
 from datetime import datetime
@@ -323,14 +324,23 @@ class FastAudit():
             pass
         return list(set(users))
 
-    # bug when it redirects back to main page...
+
     def enumUsers(self):
         """enumerates users based on the old author-id dork"""
         id = 1
         users = []
+        signature = None # a signature used to compare pages
         while True:
             newUrl= '{}?author={}'.format(self.__url, id)
             ans = self._http_req(newUrl)
+            
+            pagesig = sha1(ans.text).hexdigest().lower()
+            if (signature is None or pagesig != signature):
+                signature = pagesig
+            else:
+                # print "{}[x]{} Couldn't enumerate users!".format(RD, S)
+                break
+            
             if ans.status_code == 200:
                 users += self.extractUsers(self.getLinks(ans.text))
                 id += 1
