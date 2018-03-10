@@ -25,7 +25,6 @@ import sys, re
 reload(sys)
 sys.setdefaultencoding('utf8')
 import time
-import shodan
 import logging
 import requests
 from socket import *
@@ -34,6 +33,7 @@ from urlparse import urlparse
 from bs4 import BeautifulSoup
 from datetime import datetime
 try:
+    import shodan
     from tabulate import tabulate
     from fake_useragent import UserAgent
     from colorama import Fore,Back,Style
