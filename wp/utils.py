@@ -338,7 +338,6 @@ class FastAudit():
             if (signature is None or pagesig != signature):
                 signature = pagesig
             else:
-                # print "{}[x]{} Couldn't enumerate users!".format(RD, S)
                 break
             
             if ans.status_code == 200:
