@@ -28,7 +28,6 @@ import time
 import logging
 import requests
 from socket import *
-from hashlib import *
 from urlparse import urlparse
 from bs4 import BeautifulSoup
 from datetime import datetime
@@ -335,21 +334,18 @@ class FastAudit():
     def enumUsers(self):
         """enumerates users based on the old author-id dork"""
         id = 1
-        users = []
-        signature = None # a signature used to compare pages
+        _url, users = None, []
+        
         while True:
             newUrl= '{}?author={}'.format(self.__url, id)
             ans = self._http_req(newUrl)
-            
-            pagesig = sha1(ans.text).hexdigest().lower()
-            if (signature is None or pagesig != signature):
-                signature = pagesig
-            else:
-                break
-            
+    
             if ans.status_code == 200:
-                users += self.extractUsers(self.getLinks(ans.text))
-                id += 1
+                if ans.url!=_url:
+                    users += self.extractUsers(self.getLinks(ans.text))
+                    _url, id = ans.url, id+1
+                else:
+                    break
             elif ans.status_code == 404:
                 break
             else:
