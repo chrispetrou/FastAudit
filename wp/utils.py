@@ -77,7 +77,7 @@ class FastAudit():
         if self.__wpver:
             self.wpverVulns()
         
-        self.__theme = self.wpTheme()
+        self.__theme, self.__thVer = self.wpTheme()
         if self.__theme:
             self.themeVulns()
 
@@ -209,22 +209,29 @@ class FastAudit():
 
     def wpTheme(self):
         """returns wordpress theme"""
-        # reference: https://codeable.io/find-out-what-theme-plugins-wordpress/
+        _theme, _version = None, 'Unknown'
         theme = re.compile(r'wp-content/themes/(.*?)/')
+        ver = re.compile(r'/?ver=(([0-9]*\.?[0-9]*)*)')
         try:
-            th = theme.search(self.__content).group(1)
-            print '\n{0}[{2} Theme {1}{0}]{1} {0}{3}{1}'.format(B, S, G, th)
+            for link in self.__links:
+                if "wp-content/themes" in link:
+                    _theme = theme.search(link).group(1)
+                    if '?ver' in link:
+                        _version = ver.search(link).group(1)
+                        break
             if self.__save:
-                logging.warning('Wordpress theme detected: {}'.format(th))
-            return th
-        except AttributeError:
-            return None
+                logging.warning('Wordpress theme detected: {} version: {}'.format(_theme, _version))
+            if _theme:
+                print '\n{0}[{2} Theme {1}{0}]{1} {0}{3}{1} ({2}{4}{1})'.format(B, S, G, _theme, _version)
+            return _theme, _version
+        except Exception, error:
+            raise error
+
 
     def enumPlugins(self):
         """extracts plugins output: {plugin:version}"""
         try:
             ver = re.compile(r'/?ver=(([0-9]*\.?[0-9]*)*)')
-            # reference: https://winningwp.com/how-to-tell-which-plugins-a-website-uses/
             plugin, plugins = re.compile(r'wp-content/plugins/(.*?)/'), {}
             for link in self.__links:
                 if "wp-content/plugins" in link:
