@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
-__author__      = 'chrispetrou'
+__author__      = 'Christophoros Petrou (chrispetrou)'
 __description__ = 'FastAudit: A Wordpress security auditor!'
 __testsite__    = 'http://localhost:8888/wptest/' # local
 __thanks_to__   = 'WPScan team for the amazing API'
