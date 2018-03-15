@@ -223,7 +223,7 @@ class FastAudit():
     def enumPlugins(self):
         """extracts plugins output: {plugin:version}"""
         try:
-            ver = re.compile(r'/?ver=([0-9]*\.?[0-9]*)')
+            ver = re.compile(r'/?ver=(([0-9]*\.?[0-9]*)*)')
             # reference: https://winningwp.com/how-to-tell-which-plugins-a-website-uses/
             plugin, plugins = re.compile(r'wp-content/plugins/(.*?)/'), {}
             for link in self.__links:
