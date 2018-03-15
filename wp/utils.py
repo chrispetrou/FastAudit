@@ -7,18 +7,18 @@ __testsite__    = 'http://localhost:8888/wptest/' # local
 __thanks_to__   = 'WPScan team for the amazing API'
 
 """
-##==-=-=-=-=-=-=-=-=-= Description =-=-=-=-=-=-=-=-==###
-# FastAudit - A WordPress security auditor!            #
-# author: chrispetrou                                  #
-# Copyright (C) 2018                                   #
-#                                                      #
-# This tool scans a wordpress site for various         #
-# vulnerabilities. It can extract usernames,           #
-# plugins and the theme used and then it makes use of  #
-# the 'WPScan Vulnerability Database' to recognise     #
-# potential vulnerabilities. It also uses shodan and   #
-# checks for potential weak/pwned usernames, passwords.#
-##==-=-=-=-=-=-=-=-=-=-=-= End =-=-=-=-=-=-=-=-=-=-==###
+╔════════════════════ Description ═════════════════════╗
+║ FastAudit - A WordPress security auditor!            ║
+║ author: Christophoros Petrou (chrispetrou)           ║
+║ Copyright (C) 2018                                   ║
+║                                                      ║
+║ This tool scans a wordpress site for various         ║
+║ vulnerabilities. It can extract usernames,           ║
+║ plugins and the theme used and then it makes use of  ║
+║ the 'WPScan Vulnerability Database' to recognise     ║
+║ potential vulnerabilities. It also uses shodan and   ║
+║ checks for potential weak/pwned usernames, passwords.║
+╚════════════════════════ End ═════════════════════════╝
 """
 
 import sys, re
@@ -222,7 +222,7 @@ class FastAudit():
             if self.__save:
                 logging.warning('Wordpress theme detected: {} version: {}'.format(_theme, _version))
             if _theme:
-                print '\n{0}[{2} Theme {1}{0}]{1} {0}{3}{1} ({2}{4}{1})'.format(B, S, G, _theme, _version)
+                print '\n{0}[{2} Theme {1}{0}]{1} {0}{3}{1} (ver. {2}{4}{1})'.format(B, S, G, _theme, _version)
             return _theme, _version
         except Exception, error:
             raise error

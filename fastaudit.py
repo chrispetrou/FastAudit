@@ -7,18 +7,18 @@ __testsite__    = 'http://localhost:8888/wptest/' # local
 __thanks_to__   = 'WPScan team for the amazing API'
 
 """
-##==-=-=-=-=-=-=-=-=-= Description =-=-=-=-=-=-=-=-==###
-# FastAudit - A WordPress security auditor!            #
-# author: chrispetrou                                  #
-# Copyright (C) 2018                                   #
-#                                                      #
-# This tool scans a wordpress site for various         #
-# vulnerabilities. It can extract usernames,           #
-# plugins and the theme used and then it makes use of  #
-# the 'WPScan Vulnerability Database' to recognise     #
-# potential vulnerabilities. It also uses shodan and   #
-# checks for potential weak/pwned usernames, passwords.#
-##==-=-=-=-=-=-=-=-=-=-=-= End =-=-=-=-=-=-=-=-=-=-==###
+╔════════════════════ Description ═════════════════════╗
+║ FastAudit - A WordPress security auditor!            ║
+║ author: Christophoros Petrou (chrispetrou)           ║
+║ Copyright (C) 2018                                   ║
+║                                                      ║
+║ This tool scans a wordpress site for various         ║
+║ vulnerabilities. It can extract usernames,           ║
+║ plugins and the theme used and then it makes use of  ║
+║ the 'WPScan Vulnerability Database' to recognise     ║
+║ potential vulnerabilities. It also uses shodan and   ║
+║ checks for potential weak/pwned usernames, passwords.║
+╚════════════════════════ End ═════════════════════════╝
 """
 
 import sys, os
