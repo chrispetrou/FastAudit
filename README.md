@@ -53,6 +53,7 @@ For the _shodan_ and/or _proxy_ to work, you have to set the appropriate values 
 ### TODO
 - [ ] integrate [zoomeye](https://www.zoomeye.org) search also
 - [x] detect exact plugin-version when possible
+- [x] detect exact theme-version when possible
 
 ### Credits
 Special thanks to [WPScan team](https://github.com/wpscanteam)!
