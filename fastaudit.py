@@ -50,13 +50,13 @@ def console():
     parser = ArgumentParser(description="{}FastAudit:{} A wordpress security auditor!".format(B+G, S),formatter_class=RawTextHelpFormatter)
     parser._optionals.title = "{}arguments{}".format(B, S)
     parser.add_argument('-u', "--url", help='Specify a url to scan', type=ValidateUrl, metavar='')
+    parser.add_argument('-s', "--save", help="Save the results [{0}Default:{2} {1}False{2}]".format(B, RD, S), action='store_true')
+    parser.add_argument("--shodan", help="Use shodan api [{0}Default:{2} {1}False{2}]".format(B, RD, S), action='store_true')
     parser.add_argument('-eu', "--enumusers", help="Enumerate Users [{0}Default:{2} {1}False{2}]".format(B, RD, S), action='store_true')
     parser.add_argument('-ep', "--enumplugins", help="Enumeate plugins [{0}Default:{2} {1}False{2}]".format(B, RD, S), action='store_true')
     parser.add_argument('-ua', "--useragent", help="Use a random user-agent [{0}Default:{2} {1}FastAudit_Agent{2}]".format(B, G, S), action='store_true')
     parser.add_argument('-p', "--proxy", help="Use a proxy (settings: config.cfg) [{0}Default:{1} {2}burp settings{1}]".format(B, S, G), action='store_true')
-    parser.add_argument('-s', "--save", help="Save the results [{0}Default:{2} {1}False{2}]".format(B, RD, S), action='store_true')
-    parser.add_argument("--shodan", help="Use shodan api [{0}Default:{2} {1}False{2}]".format(B, RD, S), action='store_true')
-    parser.add_argument("--sha1", help="Specify a password (in sha1) to check for security issues", metavar='')
+    parser.add_argument('-sha1', "--sha1pass", help="Specify a password (in sha1) to check for security issues", metavar='')
     return parser.parse_args()
 
 
@@ -95,9 +95,9 @@ if __name__ == '__main__':
         else: print '{0}[*]{1} Enumerate plugins: {0}{2}OFF{1}'.format(B, S, RD)
         print ''
         try:
-            FastAudit(args.url, args.proxy, host, port, args.sha1, args.save, args.enumusers, args.enumplugins, args.shodan, sh_key, args.useragent)
+            FastAudit(args.url, args.proxy, host, port, args.sha1pass, args.save, args.enumusers, args.enumplugins, args.shodan, sh_key, args.useragent)
         except KeyboardInterrupt:
             print '\n{}[+] Exiting!{}\n'.format(R, BR)
             sys.exit(0)
-    else: print '{}usage:{} fastaudit.py [-h] [-u] [-eu] [-ep] [-ua] [-p] [-s] [--shodan] [--sha1]'.format(B, S)
+    else: print '{}usage:{} fastaudit.py [-h] [-u] [-eu] [-ep] [-ua] [-p] [-s] [--shodan] [-sha1]'.format(B, S)
 #_EOF
