@@ -2,22 +2,7 @@
 
 `FastAudit` is a simple [wordpress](https://wordpress.com/) enumeration tool and security auditor.
 
-```
-usage: fastaudit.py [-h] [-u] [-s] [--shodan] [-eu] [-ep] [-ua] [-p] [-sha1]
-
-FastAudit: A wordpress security auditor!
-
-arguments:
-  -h, --help           show this help message and exit
-  -u , --url           Specify a url to scan
-  -s, --save           Save the results [Default: False]
-  --shodan             Use shodan api [Default: False]
-  -eu, --enumusers     Enumerate Users [Default: False]
-  -ep, --enumplugins   Enumeate plugins [Default: False]
-  -ua, --useragent     Use a random user-agent [Default: FastAudit_Agent]
-  -p, --proxy          Use a proxy (settings: config.cfg) [Default: burp settings]
-  -sha1 , --sha1pass   Specify a password (in sha1) to check for security issues
-```
+<img src="images/helpmsg.png" width="70%">
 
 It is inspired by the amazing [WPScan](https://github.com/wpscanteam/wpscan) tool and is of course powered by the [WPScan Vulnerability Database](https://wpvulndb.com/api) to identify possible plugin/theme/wpVersion-related vulnerabilities. It performs only very basic enumeration based on old techniques like `?authorid`, `wp-content/plugins` etc..., though It's nice to use it for a fast scan to enumerate the basics.
 
