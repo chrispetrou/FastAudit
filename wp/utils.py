@@ -266,6 +266,7 @@ class FastAudit():
         try:    
             if self.__wpver:
                 ans = self._http_req('https://wpvulndb.com/api/v2/wordpresses/{}'.format(self.__wpver.split()[1].replace('.','')))
+                self.__totalreqs -= 1
                 if ans.status_code == 200:
                     vulns = ans.json()[self.__wpver.split()[1]]['vulnerabilities']
                     if vulns:
@@ -287,6 +288,7 @@ class FastAudit():
         try:
             if self.__theme:
                 ans = self._http_req('https://wpvulndb.com/api/v2/themes/{}'.format(self.__theme))
+                self.__totalreqs -= 1
                 if ans.status_code == 200:
                     vulns = ans.json()[self.__theme.lower()]['vulnerabilities']
                     if vulns:
@@ -307,6 +309,7 @@ class FastAudit():
             for plugin, version in self.__plugins.items():
                 print '\n╔[{0}Plugin{1}] {2}{3}{1} (ver. {2}{4}{1})'.format(B+C, S, C, plugin, version)
                 ans = self._http_req('https://wpvulndb.com/api/v2/plugins/{}'.format(plugin))
+                self.__totalreqs -= 1
                 if ans.status_code == 200:
                     vulns = ans.json()[plugin]['vulnerabilities']
                     if vulns:
