@@ -48,9 +48,9 @@ This tool is **only** for _enumeration_ and **not** for _exploitation_ - so it d
 For the _shodan_ and/or _proxy_ to work, you have to set the appropriate values on _config.cfg_. Also even if `--useragent` options is provided, requests to [haveibeenpwned](https://haveibeenpwned.com/) service will be made using `FastAudit_Agent` as user-agent.
 
 ### TODO
-- [ ] integrate [zoomeye](https://www.zoomeye.org) search also
-- [x] detect accurate plugin-version when possible
 - [x] detect accurate theme-version when possible
+- [x] detect accurate plugin-version when possible
+- [ ] integrate [zoomeye](https://www.zoomeye.org) search also
 
 ### Disclaimer
 >This tool is only for testing and academic purposes and can only be used where strict consent has been given. Do not use it for illegal purposes! It is the end user’s responsibility to obey all applicable local, state and federal laws. Developers assume no liability and are not responsible for any misuse or damage caused by this tool and software in general.
