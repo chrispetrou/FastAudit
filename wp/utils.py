@@ -100,7 +100,7 @@ class FastAudit():
 
 
     def onExit(self):
-        print '\n{0}[+]{1} Total requests made: {0}{2}{1}'.format(G, S, self.__totalreqs-1)
+        print '\n{0}[+]{1} Total requests made: {0}{2}{1}'.format(G, S, self.__totalreqs)
         print '{0}[+]{1} Total duration: {0}{2}{1}\n '.format(G, S, datetime.now()-self.__starttime)
 
     def showUsers(self):
@@ -363,6 +363,7 @@ class FastAudit():
         if self.__save:
             logging.warning('Using FastAudit_Agent as user-agent for haveibeenpwned API.')
         ans = self._http_req(url, useragent='FastAudit_Agent') # as said in the site - better use a certain user-agent for this request
+        self.__totalreqs -= 1
         self.ret()
         if ans.status_code == 200:
             print '{0}[x]{1} This password has been seen {0}{2}{1} times before'.format(B+RD, S, ans.text)

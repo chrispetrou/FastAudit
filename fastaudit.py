@@ -43,7 +43,7 @@ def banner():
     print   "║╚══╦══╦═╩╗╔╬══╦╗╔╦═╝╠╗╔╝"
     print   "║╔══╣╔╗║══╣║║╔╗║║║║╔╗╠╣║ "
     print   "║║  ║╔╗╠══║╚╣╔╗║╚╝║╚╝║║╚╗"
-    print   "╚╝  ╚╝╚╩══╩═╩╝╚╩══╩══╩╩═╝...(ver. {}1.4{})".format(RD, S)
+    print   "╚╝  ╚╝╚╩══╩═╩╝╚╩══╩══╩╩═╝...(ver. {}1.5{})".format(RD, S)
 
 def console():
     """argument parser"""
