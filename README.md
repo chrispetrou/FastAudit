@@ -28,7 +28,7 @@ This tool is **only** for _enumeration_ and **not** for _exploitation_ - so it d
 <img src="images/example.png" width="80%">
 
 ### Features
-*   enumerates wp-_version/theme/users/plugins_ (_using basic techniques - check references_)
+*   enumerates wp-_version/theme/users/plugins_
 *   based on the aboved results uses **WPScan Vulnerability Database** to search for potential vulnerabilities
 *   utilizes [shodan-API](https://www.shodan.io/) to search for additional vulnerabilities (_shodan account required for this feature_, may also give false positives sometimes)
 *   utilizes [haveibeenpwned](https://haveibeenpwned.com/) service to search if a password (_in sha1_) has been used/breached before (_useful for developers to test their passwords_).
@@ -47,13 +47,13 @@ This tool is **only** for _enumeration_ and **not** for _exploitation_ - so it d
 ### Notes
 For the _shodan_ and/or _proxy_ to work, you have to set the appropriate values on _config.cfg_. Also even if `--useragent` options is provided, requests to [haveibeenpwned](https://haveibeenpwned.com/) service will be made using `FastAudit_Agent` as user-agent.
 
-### Disclaimer
->This tool is only for testing and academic purposes and can only be used where strict consent has been given. Do not use it for illegal purposes! It is the end user’s responsibility to obey all applicable local, state and federal laws. Developers assume no liability and are not responsible for any misuse or damage caused by this tool and software in general.
-
 ### TODO
 - [ ] integrate [zoomeye](https://www.zoomeye.org) search also
-- [x] detect exact plugin-version when possible
-- [x] detect exact theme-version when possible
+- [x] detect accurate plugin-version when possible
+- [x] detect accurate theme-version when possible
+
+### Disclaimer
+>This tool is only for testing and academic purposes and can only be used where strict consent has been given. Do not use it for illegal purposes! It is the end user’s responsibility to obey all applicable local, state and federal laws. Developers assume no liability and are not responsible for any misuse or damage caused by this tool and software in general.
 
 ### Credits
 Special thanks to [WPScan team](https://github.com/wpscanteam)!
