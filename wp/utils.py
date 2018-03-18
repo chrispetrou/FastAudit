@@ -198,7 +198,7 @@ class FastAudit():
         try:
             soup = BeautifulSoup(self.__content, 'html.parser')
             ver = soup.find(attrs={"name":"generator"})['content']
-            print '{0}╔[{2} WP version {1}{0}]{1} {0}{3}{1}'.format(B, S, G, ver)
+            print '{0}╔[{2} WP version {1}{0}❯{1} {0}{3}{1}'.format(B, S, G, ver)
             if self.__save:
                 logging.warning('Wordpress version detected: {}'.format(ver))
             return ver
@@ -221,7 +221,7 @@ class FastAudit():
             if self.__save:
                 logging.warning('Wordpress theme detected: {} version: {}'.format(_theme, _version))
             if _theme:
-                print '\n{0}╔[{2} Theme {1}{0}]{1} {0}{3}{1} (ver. {2}{4}{1})'.format(B, S, G, _theme, _version)
+                print '\n{0}╔[{2} Theme {1}{0}❯{1} {0}{3}{1} (ver. {2}{4}{1})'.format(B, S, G, _theme, _version)
             return _theme, _version
         except Exception, error:
             raise error
@@ -307,7 +307,7 @@ class FastAudit():
         """makes use of wpscan API and searches for vulns"""
         try:
             for plugin, version in self.__plugins.items():
-                print '\n╔[{0}Plugin{1}] {2}{3}{1} (ver. {2}{4}{1})'.format(B+C, S, C, plugin, version)
+                print '\n{0}╔[{2} Plugin {1}{0}❯{1} {2}{3}{1} (ver. {2}{4}{1})'.format(B, S, C, plugin, version)
                 ans = self._http_req('https://wpvulndb.com/api/v2/plugins/{}'.format(plugin))
                 self.__totalreqs -= 1
                 if ans.status_code == 200:
