@@ -359,7 +359,7 @@ class FastAudit():
     def pwnedPass(self):
         """checks if password(sha1) has been used before"""
         sha1_prefix = self.__pass[:5]
-        sha1_suffix = self.__pass[5:0]
+        sha1_suffix = self.__pass[5:]
         print '\n{}[*]{} Checking if password has been used/breeched before...'.format(B, S)
         url = 'https://api.pwnedpasswords.com/range/{}'.format(sha1_prefix)
         if self.__save:
