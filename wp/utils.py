@@ -368,9 +368,9 @@ class FastAudit():
         self.__totalreqs -= 1
         self.ret()
         if ans.status_code == 200:
-            if sha1_suffix in ans.text:
+            if sha1_suffix.upper() in ans.text:
                 # Password is pwned
-                frequency = [s for s in ans.text.splitlines() if sha1_suffix in s][0].split(':')[1]
+                frequency = [s for s in ans.text.splitlines() if sha1_suffix.upper() in s][0].split(':')[1]
                 print '{0}[x]{1} This password has been seen {0}{2}{1} times before'.format(B+RD, S, frequency)
                 if self.__save:
                     logging.warning('This password has been seen {} times before.'.format(frequency))
