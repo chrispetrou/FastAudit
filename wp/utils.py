@@ -75,7 +75,7 @@ class FastAudit():
         self.__wpver = self.wpVersion()
         if self.__wpver:
             self.wpverVulns()
-        
+
         self.__theme, self.__thVer = self.wpTheme()
         if self.__theme:
             self.themeVulns()
@@ -108,7 +108,7 @@ class FastAudit():
         if self.__save:
             logging.warning('{} usernames found.'.format(len(self.__usernames)))
             if len(self.__usernames)>0:
-                for username in self.__usernames: 
+                for username in self.__usernames:
                     logging.warning(username)
         print '\n{0}[+]{1} {0}{2}{3}{1} usernames found!'.format(B, S, G, len(self.__usernames))
         if len(self.__usernames)>0:
@@ -166,8 +166,8 @@ class FastAudit():
             return gethostbyname(self.getNetloc(domain))
         except gaierror:
             return None
-    
-    
+
+
     def getService(self, port):
         """returns service by port"""
         try:
@@ -180,7 +180,7 @@ class FastAudit():
         """returns basic/main content"""
         if self.__save:
             logging.warning('Retrieving page main content.')
-        return self._http_req(self.__url).text     
+        return self._http_req(self.__url).text
 
 
     def getLinks(self, content):
@@ -253,7 +253,7 @@ class FastAudit():
             if 'vuln_type' in vuln:
                 print '  {0}╚══[Vulnerability-type]{1} {2}{3}{1}'.format(B, S, RD, vuln['vuln_type'])
             if 'fixed_in' in vuln:
-                print '  {0}╚══[Fixed]{1} Fixed in verion {2}{3}{1}'.format(B, S, RD, vuln['fixed_in']) 
+                print '  {0}╚══[Fixed]{1} Fixed in verion {2}{3}{1}'.format(B, S, RD, vuln['fixed_in'])
             if 'references' in vuln:
                 if 'url' in vuln['references']:
                     print '  {}╚══[References]:{}'.format(B, S)
@@ -263,7 +263,7 @@ class FastAudit():
 
     def wpverVulns(self):
         """returns vulns based on version"""
-        try:    
+        try:
             if self.__wpver:
                 ans = self._http_req('https://wpvulndb.com/api/v2/wordpresses/{}'.format(self.__wpver.split()[1].replace('.','')))
                 self.__totalreqs -= 1
@@ -338,11 +338,11 @@ class FastAudit():
         """enumerates users based on the old author-id dork"""
         id = 1
         _url, users = None, []
-        
+
         while True:
             newUrl= '{}?author={}'.format(self.__url, id)
             ans = self._http_req(newUrl)
-    
+
             if ans.status_code == 200:
                 if ans.url!=_url:
                     users += self.extractUsers(self.getLinks(ans.text))
@@ -358,21 +358,27 @@ class FastAudit():
 
     def pwnedPass(self):
         """checks if password(sha1) has been used before"""
+        sha1_prefix = self.__pass[:5]
+        sha1_suffix = self.__pass[5:0]
         print '\n{}[*]{} Checking if password has been used/breeched before...'.format(B, S)
-        url = 'https://api.pwnedpasswords.com/pwnedpassword/{}'.format(self.__pass)
+        url = 'https://api.pwnedpasswords.com/range/{}'.format(sha1_prefix)
         if self.__save:
             logging.warning('Using FastAudit_Agent as user-agent for haveibeenpwned API.')
         ans = self._http_req(url, useragent='FastAudit_Agent') # as said in the site - better use a certain user-agent for this request
         self.__totalreqs -= 1
         self.ret()
         if ans.status_code == 200:
-            print '{0}[x]{1} This password has been seen {0}{2}{1} times before'.format(B+RD, S, ans.text)
-            if self.__save:
-                logging.warning('This password has been seen {} times before.'.format(ans.text))
-        else:
-            print "{}[+]{} This password hasn't been seen before (that doesn't mean its safe)!".format(B+G, S)
-            if self.__save:
-                logging.warning("This password hasn't been seen before (that doesn't mean its safe though)!")
+            if sha1_suffix in ans.text:
+                # Password is pwned
+                frequency = [s for s in ans.text.splitlines() if sha1_suffix in s][0].split(':')[1]
+                print '{0}[x]{1} This password has been seen {0}{2}{1} times before'.format(B+RD, S, frequency)
+                if self.__save:
+                    logging.warning('This password has been seen {} times before.'.format(frequency))
+                return
+
+        print "{}[+]{} This password hasn't been seen before (that doesn't mean its safe)!".format(B+G, S)
+        if self.__save:
+            logging.warning("This password hasn't been seen before (that doesn't mean its safe though)!")
 
 
     def shodanSearch(self, domain):
@@ -380,15 +386,15 @@ class FastAudit():
         try:
             api = shodan.Shodan(self.__key)
             print '\n{0}{2}[+]{1} Searching with {2}Shodan{1}...'.format(B, S, G)
-    
+
             # Lookup the host
             host = api.host(self.resolve(domain))
-            
+
             # Print general info
             print '\n{0}{2}[+]{1} IP: {2}{3}{1}'.format(B, S, G, host['ip_str'])
             print '{0}{2}[+]{1} Organization: {2}{3}{1}'.format(B, S, G, host.get('org', 'n/a'))
             print '{0}{2}[+]{1} Operating System: {2}{3}{1}'.format(B, S, G, host.get('os', 'Unknown'))
-            
+
             # print open ports
             print '{}[{}x{}]{} Open ports found:'.format(B, RD, F, S)
             if host['data']:
