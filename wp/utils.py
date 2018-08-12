@@ -81,14 +81,14 @@ class FastAudit():
             self.themeVulns()
 
         # optional/more-advanced enumeration
-        if enumUsrs:
-            self.__usernames = self.enumUsers()
-            self.showUsers()
-
         if enumPlgs:
             self.__plugins = self.enumPlugins()
             if self.__plugins:
                 self.pluginVulns()
+
+        if enumUsrs:
+            self.__usernames = self.enumUsers()
+            self.showUsers()
 
         if self.__pass:
             self.pwnedPass()
