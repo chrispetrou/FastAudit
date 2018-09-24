@@ -272,9 +272,9 @@ class FastAudit():
                     if vulns:
                         self.printInfo(vulns, 'version', self.__wpver)
                     else:
-                        print '{0}╚══{2}[+]{1} No vulnerabilities found for {3}{4}{1}'.format(B, S, G, C, self.__wpver)
+                        print '{0}╚══{2}[✔︎]{1} No vulnerabilities found for {3}{4}{1}'.format(B, S, G, C, self.__wpver)
                 else:
-                    print '{0}╚══{2}[+]{1} No vulnerabilities found for {3}{4}{1}'.format(B, S, G, C, self.__wpver)
+                    print '{0}╚══{2}[✔︎]{1} No vulnerabilities found for {3}{4}{1}'.format(B, S, G, C, self.__wpver)
         except KeyError:
             pass
         except IndexError:
@@ -294,9 +294,9 @@ class FastAudit():
                     if vulns:
                         self.printInfo(vulns, 'theme', self.__theme)
                     else:
-                        print '{0}╚══{2}[+]{1} No vulnerabilities found for {3}{4}{1}'.format(B, S, G, C, self.__theme)
+                        print '{0}╚══{2}[✔︎]{1} No vulnerabilities found for {3}{4}{1}'.format(B, S, G, C, self.__theme)
                 else:
-                    print '{0}╚══{2}[+]{1} No vulnerabilities found for {3}{4}{1}'.format(B, S, G, C, self.__theme)
+                    print '{0}╚══{2}[✔︎]{1} No vulnerabilities found for {3}{4}{1}'.format(B, S, G, C, self.__theme)
         except KeyError:
             pass
         except Exception, error:
@@ -315,9 +315,9 @@ class FastAudit():
                     if vulns:
                         self.printInfo(vulns, 'plugin', plugin)
                     else:
-                        print '{0}╚══{2}[+]{1} No vulnerabilities found!'.format(B, S, G)
+                        print '{0}╚══{2}[✔︎]{1} No vulnerabilities found!'.format(B, S, G)
                 else:
-                    print '{0}╚══{2}[+]{1} No vulnerabilities found!'.format(B, S, G)
+                    print '{0}╚══{2}[✔︎]{1} No vulnerabilities found!'.format(B, S, G)
         except Exception, ApiError:
             raise ApiError
 
@@ -376,7 +376,7 @@ class FastAudit():
                     logging.warning('This password has been seen {} times before.'.format(frequency))
                 return
 
-        print "{}[+]{} This password hasn't been seen before (that doesn't mean its safe)!".format(B+G, S)
+        print "{}[✔︎]{} This password hasn't been seen before (that doesn't mean its safe)!".format(B+G, S)
         if self.__save:
             logging.warning("This password hasn't been seen before (that doesn't mean its safe though)!")
 
@@ -418,7 +418,7 @@ class FastAudit():
                                 print '{}Description:{}  {}'.format(B, S, exp.get('description'))
             else:
                 self.ret()
-                print '{}[+]{} No vulnerabilities found!'.format(B+G, S)
+                print '{}[✔︎]{} No vulnerabilities found!'.format(B+G, S)
         except Exception, error:
             self.ret()
             print '{}[x] Unable to perform a shodan search!{}'.format(RD, S)
