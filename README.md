@@ -1,6 +1,6 @@
 # FastAudit [![GPLv3 license](https://img.shields.io/badge/license-GPLv3-blue.svg)](https://github.com/chrispetrou/FastAudit/blob/master/LICENSE)
 
-`FastAudit` is a simple [wordpress](https://wordpress.com/) enumeration tool and security auditor.
+`FastAudit` is a simple [wordpress](https://wordpress.com/) enumeration tool and security auditor, able to detect possible security issues with even __one__ web-request.
 
 <img src="images/helpmsg.png" width="70%">
 
