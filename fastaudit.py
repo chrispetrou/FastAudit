@@ -74,7 +74,8 @@ if __name__ == '__main__':
                 print "\n{}[x] Proxy error: host and/or port NOT set.{}\n".format(R, BR)
                 sys.exit(0)
             else: 
-                print '\n{0}[*]{1} Proxy: {0}{2}ON{1}'.format(B, S, G)
+                if validateIP(host) and validatePort(port):
+                    print '\n{0}[*]{1} Proxy: {0}{2}ON{1}'.format(B, S, G)
         else:
             print '\n{0}[*]{1} Proxy: {0}{2}OFF{1}'.format(B, S, RD)
         

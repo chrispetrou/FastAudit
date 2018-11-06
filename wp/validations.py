@@ -36,7 +36,8 @@ def validatePort(port):
         if 1 < int(port) < 65536:
             return int(port)
     else:
-        raise ArgumentTypeError('{}[x] Port must be in range 1-65535{}'.format(FR,F))
+        print '{}[x] Port must be in range 1-65535{}'.format(FR,F)
+        sys.exit(0)
 
 
 def validateIP(ip):
@@ -44,7 +45,8 @@ def validateIP(ip):
         if socket.inet_aton(ip):
             return ip
     except socket.error:
-        raise ArgumentTypeError('{}[x] Invalid ip provided{}'.format(FR,S))
+        print '{}[x] Invalid ip provided{}'.format(FR,S)
+        sys.exit(0)
 
 
 def ValidateUrl(url):
@@ -52,11 +54,3 @@ def ValidateUrl(url):
         return url
     else: raise ArgumentTypeError('{}~~> Invalid url{}'.format(RD, S))
 
-
-def validateProxy(proxy):
-    if not ':' in proxy or proxy.count(':') != 1:
-        raise ArgumentTypeError('\n{}[x] Proxy must be in the form: host:port{}\n'.format(FR,S))
-    else:
-        host, port = proxy.split(':')
-        if validateIP(host) and validatePort(port):
-            return proxy
