@@ -23,14 +23,10 @@ __thanks_to__   = 'WPScan team for the amazing API'
 
 import sys, os
 import ConfigParser
+from wp.validations import *
 from wp.utils import FastAudit
 from colorama import Fore,Back,Style
 from argparse import ArgumentParser, ArgumentTypeError, RawTextHelpFormatter
-try:
-    import validators
-except ImportError, error:
-    print '\n[!] Please install missing modules!\n'
-    sys.exit(0)
 
 # console colors
 B, S, F  = Style.BRIGHT, Style.RESET_ALL, Fore.RESET
@@ -43,7 +39,7 @@ def banner():
     print   "║╚══╦══╦═╩╗╔╬══╦╗╔╦═╝╠╗╔╝"
     print   "║╔══╣╔╗║══╣║║╔╗║║║║╔╗╠╣║ "
     print   "║║  ║╔╗╠══║╚╣╔╗║╚╝║╚╝║║╚╗"
-    print   "╚╝  ╚╝╚╩══╩═╩╝╚╩══╩══╩╩═╝...(ver. {}1.5{})".format(RD, S)
+    print   "╚╝  ╚╝╚╩══╩═╩╝╚╩══╩══╩╩═╝...(ver. {}1.6{})".format(RD, S)
 
 def console():
     """argument parser"""
@@ -58,12 +54,6 @@ def console():
     parser.add_argument('-p', "--proxy", help="Use a proxy (settings: config.cfg) [{0}Default:{1} {2}burp settings{1}]".format(B, S, G), action='store_true')
     parser.add_argument('-sha1', "--sha1pass", help="Specify a password (in sha1) to check for security issues", metavar='')
     return parser.parse_args()
-
-
-def ValidateUrl(url):
-    if validators.url(url):
-        return url
-    else: raise ArgumentTypeError('{}~~> Invalid url{}'.format(RD, S))
 
 
 if __name__ == '__main__':
