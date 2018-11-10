@@ -2,3 +2,4 @@ validators
 colorama
 tabulate
 fake_useragent
+requests[security]
