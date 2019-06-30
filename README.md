@@ -1,4 +1,9 @@
-# FastAudit [![GPLv3 license](https://img.shields.io/badge/license-GPLv3-blue.svg)](https://github.com/chrispetrou/FastAudit/blob/master/LICENSE)
+<img src="images/logo.png" width="25%">
+
+###### A simple and minimal wordpress security auditor! <br/> Audit your wordpress application for security issues with even 1 request.
+[![GPLv3 license](https://img.shields.io/badge/license-GPLv3-blue.svg)](https://github.com/chrispetrou/FastAudit/blob/master/LICENSE) [![](https://img.shields.io/badge/Made%20with-python-yellow.svg)](https://www.python.org/) ![version](https://img.shields.io/badge/version-1.6-lightgrey.svg)
+* * *
+
 
 `FastAudit` is a simple [wordpress](https://wordpress.com/) enumeration tool and security auditor, able to detect possible security issues with even __one__ web-request.
 
@@ -10,7 +15,7 @@ This tool is **only** for _enumeration_ and **not** for _exploitation_ - so it d
 
 ---
 
-<img src="images/example.png" width="90%">
+<img src="images/new_example.png" width="90%">
 
 ### Features
 *   enumerates wp-_version/theme/users/plugins_
@@ -35,11 +40,16 @@ For the _shodan_ and/or _proxy_ to work, you have to set the appropriate values 
 ### TODO
 - [ ] integrate [zoomeye](https://www.zoomeye.org) search also
 
+### Contributions & Feedback
+
+Feedback and contributions are welcome. If you find any bug or have a feature request feel free to open an issue, and as soon as I review it I'll try to fix it!
+
 ### Disclaimer
 >This tool is only for testing and academic purposes and can only be used where strict consent has been given. Do not use it for illegal purposes! It is the end user’s responsibility to obey all applicable local, state and federal laws. Developers assume no liability and are not responsible for any misuse or damage caused by this tool and software in general.
 
 ### Credits
-Special thanks to [WPScan team](https://github.com/wpscanteam)!
+*   Special thanks to [WPScan team](https://github.com/wpscanteam)!
+*   Logo designed with [fontmeme.com](https://fontmeme.com/graffiti-fonts/)!
 
 ## References
 *   https://winningwp.com/how-to-tell-which-plugins-a-website-uses/
