@@ -1,7 +1,7 @@
 <img src="images/logo.png" width="25%">
 
 ###### A simple and minimal wordpress security auditor! <br/> Audit your wordpress application for security issues with even 1 request.
-[![GPLv3 license](https://img.shields.io/badge/license-GPLv3-blue.svg)](https://github.com/chrispetrou/FastAudit/blob/master/LICENSE) [![](https://img.shields.io/badge/Made%20with-python-yellow.svg)](https://www.python.org/) 
+[![GPLv3 license](https://img.shields.io/badge/license-GPLv3-blue.svg)](https://github.com/chrispetrou/FastAudit/blob/master/LICENSE) [![](https://img.shields.io/badge/Made%20with-python-yellow.svg?style=flat&logo=python&logoColor=white)](https://www.python.org/) 
 ![version](https://img.shields.io/badge/version-1.6-lightgrey.svg)
 [![Known Vulnerabilities](https://snyk.io//test/github/chrispetrou/FastAudit/badge.svg?targetFile=requirements.txt)](https://snyk.io//test/github/chrispetrou/FastAudit?targetFile=requirements.txt)
 * * *
