@@ -1,6 +1,11 @@
-validators
+bs4
 shodan
+argparse
+requests
+urlparse
 colorama
 tabulate
+validators
+ConfigParser
 fake_useragent
 requests[security]
