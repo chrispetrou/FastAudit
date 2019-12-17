@@ -21,6 +21,7 @@ __thanks_to__   = 'WPScan team for the amazing API'
 ╚════════════════════════ End ═════════════════════════╝
 """
 
+import sys
 import socket
 from colorama import Fore,Back,Style
 from argparse import ArgumentTypeError
