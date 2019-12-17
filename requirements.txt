@@ -1,4 +1,5 @@
 validators
+shodan
 colorama
 tabulate
 fake_useragent
