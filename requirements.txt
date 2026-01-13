@@ -9,3 +9,5 @@ validators
 ConfigParser
 fake_useragent
 requests[security]
+filelock>=3.20.3 # not directly required, pinned by Snyk to avoid a vulnerability
+urllib3>=2.6.3 # not directly required, pinned by Snyk to avoid a vulnerability
